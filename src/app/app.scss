@@ -1,0 +1,21 @@
+.app {
+    height: 100%;
+    display: grid;
+    grid-template-areas: 
+        "users actions actions"
+        "users content content"
+        "users content content"
+        "users content content";
+}
+
+.users {
+    grid-area: users;
+}
+
+.actions {
+    grid-area: actions;
+}
+
+.content {
+    grid-area: content;
+}
