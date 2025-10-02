@@ -1,11 +1,22 @@
 <div class="app">
   <div class="users">
-
+    @if (users.length) {
+      @for(user of users; track user.id) {
+        <div class="users-item">
+          {{user.id}} - {{user.name}}
+        </div>
+      }
+    } @else {
+      Loading...
+    }
+    
   </div>
   <div class="actions">
-
+    <button>Add</button>
+    <button>Edit</button>
+    <button>Delete</button>
   </div>
   <div class="content">
-    
+
   </div>
 </div>

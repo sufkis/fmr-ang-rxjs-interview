@@ -6,16 +6,32 @@
         "users content content"
         "users content content"
         "users content content";
+    border: 1px solid black;
+    padding: 6px;
 }
 
 .users {
     grid-area: users;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &-item {
+        height: 50px;
+        border: 1px solid black;
+        
+        &.selected {
+            background-color: lightblue;
+        }
+    }
 }
 
 .actions {
     grid-area: actions;
+    border: 1px solid black;
 }
 
 .content {
     grid-area: content;
+    border: 1px solid black;
 }
