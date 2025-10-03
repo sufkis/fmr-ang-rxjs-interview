@@ -1,105 +1,35 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
-
-export interface IOrder {
-  id: string;
-  amount: number;
-}
-
-export interface IUser {
-  id: string;
-  name: string;
-  orders: IOrder[];
-}
-
-const usersExmaple = [
-  {
-    id: 'u1', name: 'Alice', orders: [
-      { id: 'o1', amount: 120 },
-      { id: 'o2', amount: 80 },
-      { id: 'o3', amount: 45 },
-      { id: 'o4', amount: 200 }
-    ]
-  },
-  {
-    id: 'u2', name: 'Bob', orders: [
-      { id: 'o5', amount: 50 },
-      { id: 'o6', amount: 75 },
-      { id: 'o7', amount: 30 },
-      { id: 'o8', amount: 60 }
-    ]
-  },
-  {
-    id: 'u3', name: 'Charlie', orders: [
-      { id: 'o9', amount: 99 },
-      { id: 'o10', amount: 150 }
-    ]
-  },
-  {
-    id: 'u4', name: 'Dana', orders: [
-      { id: 'o11', amount: 20 },
-      { id: 'o12', amount: 220 },
-      { id: 'o13', amount: 40 },
-      { id: 'o14', amount: 90 },
-      { id: 'o15', amount: 10 }
-    ]
-  },
-  {
-    id: 'u5', name: 'Eli', orders: [
-      { id: 'o16', amount: 15 },
-      { id: 'o17', amount: 35 },
-      { id: 'o18', amount: 85 }
-    ]
-  }
-]
+import { IOrder, IUser } from '../models/app.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private users: IUser[] = [
-    {
-      id: 'u1', name: 'Alice', orders: [
-        { id: 'o1', amount: 120 },
-        { id: 'o2', amount: 80 },
-        { id: 'o3', amount: 45 },
-        { id: 'o4', amount: 200 }
-      ]
-    },
-    {
-      id: 'u2', name: 'Bob', orders: [
-        { id: 'o5', amount: 50 },
-        { id: 'o6', amount: 75 },
-        { id: 'o7', amount: 30 },
-        { id: 'o8', amount: 60 }
-      ]
-    },
-    {
-      id: 'u3', name: 'Charlie', orders: [
-        { id: 'o9', amount: 99 },
-        { id: 'o10', amount: 150 }
-      ]
-    },
-    {
-      id: 'u4', name: 'Dana', orders: [
-        { id: 'o11', amount: 20 },
-        { id: 'o12', amount: 220 },
-        { id: 'o13', amount: 40 },
-        { id: 'o14', amount: 90 },
-        { id: 'o15', amount: 10 }
-      ]
-    },
-    {
-      id: 'u5', name: 'Eli', orders: [
-        { id: 'o16', amount: 15 },
-        { id: 'o17', amount: 35 },
-        { id: 'o18', amount: 85 }
-      ]
-    },
+    { id: 1, name: 'Alice' },
+    { id: 2, name: 'Bob' },
+    { id: 3, name: 'Charlie' },
+    { id: 4, name: 'Dana' },
+    { id: 5, name: 'Eli' },
   ];
+
+
+  private orders: Record<number, IOrder[]> = {
+    1: [{ id: 1, amount: 120, userId: 1 }, { id: 2, amount: 80, userId: 1 }, { id: 3, amount: 45, userId: 1 }, { id: 4, amount: 200, userId: 1 }],
+    2: [{ id: 5, amount: 50, userId: 2 }, { id: 6, amount: 75, userId: 2 }, { id: 7, amount: 30, userId: 2 }, { id: 8, amount: 60, userId: 2 }],
+    3: [{ id: 9, amount: 99, userId: 3 }, { id: 10, amount: 150, userId: 3 }],
+    4: [{ id: 11, amount: 20, userId: 4 }, { id: 12, amount: 220, userId: 4 }, { id: 13, amount: 40, userId: 4 }, { id: 14, amount: 90, userId: 4 }, { id: 15, amount: 10, userId: 4 }],
+    5: [{ id: 16, amount: 15, userId: 5 }, { id: 17, amount: 35, userId: 5 }, { id: 18, amount: 85, userId: 5 }],
+  };
 
 
   getUsers(): Observable<IUser[]> {
     return of(this.users).pipe(delay(400));
+  }
+
+
+  getOrdersByUserId(userId: number): Observable<IOrder[]> {
+    return of(this.orders[userId] ?? []).pipe(delay(600));
   }
 }
