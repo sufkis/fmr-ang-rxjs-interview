@@ -1,24 +1,25 @@
 .app {
     height: 100%;
     display: grid;
-    grid-template-areas: 
-        "users actions actions"
-        "users content content"
-        "users content content"
-        "users content content";
-    border: 1px solid black;
-    padding: 6px;
+    gap: 6px;
+    grid-template-columns: 1fr 2fr; 
+    border: 1px solid #1212D2;
+    padding: 8px;
+    box-shadow: 10px 10px 0px 0px #1212D2
 }
 
 .users {
-    grid-area: users;
     display: flex;
     flex-direction: column;
     gap: 4px;
 
     &-item {
         height: 50px;
-        border: 1px solid black;
+        border: 1px solid #1212D2;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
         
         &.selected {
             background-color: lightblue;
@@ -26,12 +27,6 @@
     }
 }
 
-.actions {
-    grid-area: actions;
-    border: 1px solid black;
-}
-
 .content {
-    grid-area: content;
-    border: 1px solid black;
+    border: 1px solid #1212D2;
 }

@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { selectSelectedUser, selectSelectedUserId } from '../users/users.selectors';
 import { IAppState, IOrder, IOrdersState } from '../../models/app.model';
+import { selectSelectedUserId } from '../users/users.selectors';
 
 
 export const selectOrdersState = createFeatureSelector<IAppState, IOrdersState>('orders');
@@ -11,8 +11,7 @@ export const selectSelectedUserOrders = createSelector(
     selectSelectedUserId,
     (entities, userId): IOrder[] => (userId == null ? [] : Object.values(entities).filter(o => o.userId === userId))
 );
-export const selectSelectedUserNameAndOrdersTotal = createSelector(
-    selectSelectedUser,
+export const selectSelectedUserOrdersTotal = createSelector(
     selectSelectedUserOrders,
-    (user, orders) => ({ name: user?.name ?? '', total: orders.reduce((sum, o) => sum + o.amount, 0) })
+    (orders) => orders.reduce((sum, order) => sum + order.amount, 0)
 );

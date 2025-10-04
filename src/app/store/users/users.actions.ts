@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { Update } from '@ngrx/entity';
 import { IUser } from '../../models/app.model';
 
 export const usersPageOpened = createAction('[Users Page] Opened');
@@ -13,7 +12,7 @@ export const setUsers = createAction(
 
 export const selectUser = createAction(
 '[Users] Select User',
-props<{ id: string | null }>()
+props<{ id: number | null }>()
 );
 
 export const upsertUser = createAction(

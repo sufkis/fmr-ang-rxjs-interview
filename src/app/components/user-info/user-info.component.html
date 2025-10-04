@@ -1,0 +1,23 @@
+<div class="user-info">
+    <user-name></user-name>
+    <order-amount></order-amount>
+    @if (isInEditMode) {
+        <div class="edit-wrapper">
+            <input type="text" [(ngModel)]="nameInput" />
+            <button
+                type="button"
+                (click)="confirmEdit()"
+                [disabled]="!nameInput.trim()"
+            >
+                Confirm
+            </button>
+        </div>
+    } @else {
+        <button
+            class="edit-button"
+            (click)="startEdit()"
+        >
+            Edit
+        </button>
+    }
+</div>
