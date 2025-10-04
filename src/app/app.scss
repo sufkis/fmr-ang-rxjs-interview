@@ -29,4 +29,9 @@
 
 .content {
     border: 1px solid #1212D2;
+
+    &-empty {
+        padding: 40px;
+        text-align: center;
+    }
 }
